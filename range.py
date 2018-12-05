@@ -62,8 +62,10 @@ class Hand:
 		print("HAND2WIN", sum(hand2_win)/total)
 
 
-
-test = Hand(["Ad", "Ac", "Td", "9c"], ["Ks", "Kh", "Th", "Qs"], ["2c", "2s", "5d"])
+h1 = ["Ad", "Ac", "Td", "9c"]
+h2 = ["Ks", "Kh", "Th", "Qs"]
+flop = ["2c", "2s", "5d"]
+test = Hand(h1, h2, flop)
 
 """
 board = [
