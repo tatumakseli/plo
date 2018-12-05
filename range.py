@@ -6,7 +6,7 @@ class Hand:
 		self.hand = hand
 		self.flop = flop
 		self.allcards = Hand.allCards(self)
-		self.cardsLeft = [elem for elem in self.allcards if elem not in self.hand]
+		self.cardsLeft = [elem for elem in self.allcards if elem not in self.hand and elem not in self.flop]
 		#print(self.cardsLeft)
 		Hand.twoCardHandsFunc(self)
 		Hand.turnAndRiver(self)
@@ -31,10 +31,12 @@ class Hand:
 
 	def calc(self):
 		evaluator = Evaluator()
-		board = [Card.new(self.flop[0]), Card.new(self.flop[1]), Card.new(self.flop[2])]
-		for key in self.twoCardHands:
-			hand = [Card.new(key[0]), Card.new(key[1])]
-			print(evaluator.evaluate(board, hand))
+		# board = [Card.new(self.flop[0]), Card.new(self.flop[1]), Card.new(self.flop[2])]
+		for x in self.turnAndRiverCombos:
+			board = [Card.new(self.flop[0]), Card.new(self.flop[1]), Card.new(self.flop[2]), Card.new(x[0]), Card.new(x[1])]
+			for key in self.twoCardHands:
+				hand = [Card.new(key[0]), Card.new(key[1])]
+				print(evaluator.evaluate(board, hand))
 
 
 test = Hand(["9d", "8d", "7c", "6c"], ["As", "Kc", "Jh"])
